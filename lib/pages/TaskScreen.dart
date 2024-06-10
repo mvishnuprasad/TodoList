@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/widgets/addTask.dart';
 import 'package:todolist/widgets/task_list.dart';
+
 class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
 
@@ -15,7 +17,17 @@ class TaskScreen extends StatelessWidget {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTaskScreen())),
+            );
+          },
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,6 +82,3 @@ class TaskScreen extends StatelessWidget {
         ));
   }
 }
-
-
-
