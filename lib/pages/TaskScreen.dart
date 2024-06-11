@@ -2,20 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:todolist/widgets/addTask.dart';
 import 'package:todolist/widgets/task_list.dart';
 import 'package:todolist/models/tasks.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/models/task_data.dart';
 
-class TaskScreen extends StatefulWidget {
-  const TaskScreen({super.key});
-
-  @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  List<Task> task = [
-    Task(name: "Buy Grocery"),
-    Task(name: "Buy Milk"),
-    Task(name: "Buy Electronics"),
-  ];
+class TaskScreen extends StatelessWidget {
   //const ({super.key});
   @override
   Widget build(BuildContext context) {
@@ -33,16 +23,15 @@ class _TaskScreenState extends State<TaskScreen> {
               isScrollControlled: true,
               builder: (context) => SingleChildScrollView(
                   child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTaskScreen((newTitle) {
-                        setState(() {
-                          task.add(Task(name: newTitle));
-                        });
-                        Navigator.pop(context);
-                      }),
-                  )
-              ),
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen((newTitle) {
+                  // setState(() {
+                  //   task.add(Task(name: newTitle));
+                  // });
+                  Navigator.pop(context);
+                }),
+              )),
             );
           },
         ),
@@ -52,10 +41,10 @@ class _TaskScreenState extends State<TaskScreen> {
             Container(
               padding: const EdgeInsets.only(
                   top: 60, left: 30, right: 30, bottom: 30),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 30,
                     child: Icon(
@@ -64,10 +53,10 @@ class _TaskScreenState extends State<TaskScreen> {
                       color: Colors.lightBlueAccent,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "TodoList",
                     style: TextStyle(
                         fontSize: 50,
@@ -75,8 +64,8 @@ class _TaskScreenState extends State<TaskScreen> {
                         color: Colors.white),
                   ),
                   Text(
-                    "13 tasks",
-                    style: TextStyle(
+                    "${Provider.of<TaskData>(context).taskCount} tasks",
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
                         color: Colors.white),
@@ -92,7 +81,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
-                child: TaskList(task),
+                child: TaskList(),
               ),
             )
           ],

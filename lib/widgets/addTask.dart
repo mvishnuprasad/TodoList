@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
   final Function addTask;
-
-  String newTaskTitle="";
-  AddTaskScreen(this.addTask);
+  String newTaskTitle = "";
+  AddTaskScreen(this.addTask, {super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
