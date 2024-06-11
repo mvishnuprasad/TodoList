@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:todolist/models/task_data.dart';
 
 class TaskScreen extends StatelessWidget {
+  const TaskScreen({super.key});
+
   //const ({super.key});
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,7 @@ class TaskScreen extends StatelessWidget {
                   child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen((newTitle) {
-                  // setState(() {
-                  //   task.add(Task(name: newTitle));
-                  // });
-                  Navigator.pop(context);
-                }),
+                child: AddTaskScreen(),
               )),
             );
           },

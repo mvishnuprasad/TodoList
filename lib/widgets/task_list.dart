@@ -14,9 +14,9 @@ class TaskList extends StatelessWidget {
             return TaskTile(
                 taskData.task[index].name, taskData.task[index].isDone,
                 (bool? checkBoxStateValue) {
-              // setState(() {
-              //   Provider.of<TaskData>(context).task[index].toggleDone();
-              // });
+              taskData.updateTask(taskData.task[index],);
+            }, () {
+              taskData.deleteTask(taskData.task[index]);
             });
           },
           itemCount: taskData.task.length,
